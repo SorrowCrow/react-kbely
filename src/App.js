@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./scss/main.scss";
+import Svgs from "./components/Svgs";
+import Title from "./components/Title";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // const sm = window.$sm;
+
+    function isMd() {
+        return windowInfo.size * (window.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < window.$md ? true : false;
+    }
+
+    function displayMenu() {
+        return windowInfo.size * (window.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) > window.$header ? true : false;
+    }
+
+    let windowInfo = {};
+
+    function getWindowSize() {
+        windowInfo.size = window.innerWidth;
+        windowInfo.isMd = isMd();
+        windowInfo.displayMenu = displayMenu();
+    }
+    window.addEventListener("resize", getWindowSize());
+
+    return (
+        <div>
+            <Svgs />
+            <Title windowInfo={{ windowInfo }} />
+        </div>
+    );
 }
 
 export default App;

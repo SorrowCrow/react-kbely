@@ -1,0 +1,19 @@
+.title {
+    font-size: 2.5rem;
+    font-family: "Playfair Display", serif;
+}
+
+.sub-title {
+    font-size: 0.9375rem;
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .title {
+        width: max-content;
+        font-size: 5rem;
+    }
+
+    .sub-title {
+        font-size: 1.5625rem;
+    }
+}
