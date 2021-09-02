@@ -12,6 +12,12 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
     const formData = useFormDataContext();
     const setFormData = useSetFormDataContext();
 
+    // const [displayError, setDisplayError] = useState();
+
+    // function tempDisplayError(error) {
+    //     setDisplayError(error);
+    // }
+
     const [inputData, setInputData] = useState({
         name: "",
         phone: "",
@@ -55,7 +61,6 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
         setInputData((inputData) => {
             return { ...inputData, loading: true };
         });
-        // setFormData({ type: formData.ACTIONS.SET_FORMDATA, payload: { email: inputData.email, phone: inputData.phone, name: inputData.name, message: inputData.message } });
 
         let stripeId;
         const token = formData.token;
@@ -88,11 +93,13 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
                     const { error } = await stripe.confirmCardPayment(secret, {
                         payment_method: paymentMethod.id,
                     });
+                    // if (error) tempDisplayError(error);
                     if (error) console.log(error);
                 } else {
                     throw new Error(message);
                 }
             } catch (error) {
+                // tempDisplayError(error.message);
                 console.log(error.message);
                 setInputData((i) => ({ ...i, loading: false }));
             }
@@ -100,6 +107,7 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
         const response = await axios.post("api/reservationItems/", { cleanData, stripeId: stripeId, captchaRes: token });
         const { message } = response.data;
         if (message) {
+            // tempDisplayError(message);
             console.log(message);
         }
         setInputData((i) => ({ ...i, loading: false }));
@@ -109,6 +117,11 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
 
     return (
         <>
+            {/* {displayError && (
+                <div className="ErrorMessage">
+                    <div className="item">{displayError}</div>
+                </div>
+            )} */}
             <form className="reservationForm" id="form" onSubmit={handleSubmit}>
                 <svg className="containerWave relative">
                     <use href="#containerWave" />
@@ -119,7 +132,7 @@ const ReservationFormBlock = ({ OnlinePayments }) => {
                         <div className="reservationForm__select user-select-none">
                             <div className="reservationForm__select-inner flex content-between align-center h-p" style={formData.dropdown ? { borderRadius: "10px 10px 0 0" } : {}} onClick={osobyClick.bind(this)}>
                                 <div className="pa flex align-center">{formData.persons} Osoby</div>
-                                {formData.persons > 1 ? <p>(+{formData.persons - 1}00,- Kč)</p> : null}
+                                {formData.persons > 1 && <p>(+{formData.persons - 1}00,- Kč)</p>}
                                 <svg id="formArrow" style={formData.dropdown ? { transform: "rotate(180deg)" } : null}>
                                     <use href="#openedArrow" />
                                 </svg>
@@ -145,11 +158,11 @@ Treba jokou chcete hudbu..."
                     <AdditionalComponent name={"Ovocna Misa"} price={350} infoText={"Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area."} />
                 </div>
             </form>
-            {inputData.loading ? (
-                <div className="flex content-center align-center fixed overflow-hidden OnlinePaymentsBlock">
+            {inputData.loading && (
+                <div className="flex content-center align-center fixed overflow-hidden LoadingBlock">
                     <div className="spin flex"></div>
                 </div>
-            ) : null}
+            )}
         </>
     );
 };

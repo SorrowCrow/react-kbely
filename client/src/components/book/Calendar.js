@@ -8,11 +8,6 @@ const Calendar = () => {
     const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"];
     const calendarData = useCalendarData();
     const setCalendarData = useSetCalendarData();
-    let reserve;
-
-    if (calendarData.time !== "") {
-        reserve = <Reservation />;
-    }
 
     function getMonthIncrease() {
         calendarData.removeMenu();
@@ -53,7 +48,7 @@ const Calendar = () => {
 
                 <ChooseHoursMenu />
             </div>
-            {reserve}
+            {calendarData.time ? <Reservation /> : null}
         </div>
     );
 };

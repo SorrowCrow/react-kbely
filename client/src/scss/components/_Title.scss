@@ -1,0 +1,69 @@
+.hiddenTitle {
+    opacity: 0;
+    overflow: hidden;
+    transition-timing-function: linear, step-end;
+}
+
+.title-contain {
+    .title-wrap {
+        bottom: 3.125rem;
+    }
+    .title {
+        color: $white;
+        transition: $transition;
+        display: flex;
+        flex-direction: column;
+        &-privatni {
+            font-family: $indieFlower-font;
+            color: $secondary;
+        }
+        &-wellness {
+            top: 0;
+            width: 100%;
+            font-size: 5.3125rem;
+            font-family: $italiana-font;
+        }
+        svg {
+            width: 8.75rem;
+            height: 8.75rem;
+            right: 0;
+            padding-top: 2.25rem;
+            // padding-left: 5.1875rem;
+            align-self: center;
+            fill: $orange;
+        }
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .title-contain {
+        .title {
+            width: 60.625rem;
+            &:hover {
+                color: rgba(255, 255, 255, 0.5);
+            }
+            &-privatni {
+                font-size: 5rem;
+                line-height: 7.3125rem;
+            }
+            &-wellness {
+                margin-top: -2.875rem;
+                width: 100%;
+                font-size: 15.625rem;
+            }
+            svg {
+                width: 8.75rem;
+                height: 8.75rem;
+                right: 0px;
+                top: 4.9375rem;
+                // top: -1rem;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@import "./Title/Slider";
+
+@import "./Title/Header";
+
+@import "./Title/Menu";

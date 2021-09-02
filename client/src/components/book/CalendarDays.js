@@ -4,13 +4,15 @@ import { useCalendarData, useSetCalendarData } from "./CalendarContext";
 const CalendarDays = () => {
     const calendarData = useCalendarData();
     const setCalendarData = useSetCalendarData();
+
     const [firstDay, setFirstDay] = useState(1);
     const [lastDay, setLastDay] = useState(1);
     const [lastMonthDays, setLastMonthDays] = useState(1);
     const [thisMonthDays, setThisMonthDays] = useState(1);
-    // const [secondDate, setSecondDate] = useState(0);
+
     const dd = Number(String(new Date().getDate()).padStart(2, "0"));
     const monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     useEffect(() => {
         if (new Date(new Date().getFullYear(), calendarData.month, 1).getDay() === 0) {
             setFirstDay(7);
@@ -33,6 +35,7 @@ const CalendarDays = () => {
     function isCurrentMonth(month = calendarData.month) {
         return month === calendarData.currentMonth;
     }
+
     function isCurrentYear() {
         return calendarData.year + calendarData.yearLoop === calendarData.year;
     }
@@ -59,8 +62,8 @@ const CalendarDays = () => {
     }
 
     function endsOnSundayCheck() {
-        if (lastDay === 7) return true;
-        else return false;
+        if (lastDay === 7) return false;
+        else return true;
     }
 
     function dataMonthClick(event) {
@@ -73,7 +76,6 @@ const CalendarDays = () => {
             element.id = calendarData.secondDate;
             calendarData.removeMenu();
             calendarData.removeSelect();
-            // calendarData.setSecondDate(0);
             setCalendarData({ type: calendarData.ACTIONS.SET_SECOND_DATE, payload: { secondDate: 0 } });
         } else if (!element.classList.contains("daysGone")) {
             if (calendarData.secondDate !== 0) {
@@ -82,29 +84,17 @@ const CalendarDays = () => {
                     document.getElementsByClassName("secondDateCss")[0].classList.add("firstDateCss");
                 }
                 document.getElementsByClassName("secondDateCss")[0].classList.remove("secondDateCss");
-                // calendarData.setcalendarData({ ...calendarData, secondDate: 0 });
-                // setSecondDate(0);
             }
             element.classList.remove("firstDateCss");
             element.classList.add("secondDateCss");
-            // calendarData.setSecondDate(element.id);
             let secondDate = element.id;
-            // calendarData.setcalendarData({ ...calendarData, secondDate: element.id });
-            // setSecondDate(Number(element.id));
             let date;
             if (element.id > 36) {
-                // setDate(element.id, (element.id - 36 + 1 + (lastMonthDays - firstDay)).toString() + " " + monthList[calendarData.month - 1] + " " + (calendarData.year + calendarData.yearLoop).toString());
-                // calendarData.setDate((element.id - 36 + 1 + (lastMonthDays - firstDay)).toString() + " " + monthList[calendarData.month - 1] + " " + (calendarData.year + calendarData.yearLoop).toString());
                 date = (element.id - 36 + 1 + (lastMonthDays - firstDay)).toString() + " " + monthList[calendarData.month - 1] + " " + (calendarData.year + calendarData.yearLoop).toString();
             } else if (element.id > 31) {
-                // setDate(element.id, (element.id - 31).toString() + " " + monthList[calendarData.month + 1] + " " + (calendarData.year + calendarData.yearLoop).toString());
-                // calendarData.setDate((element.id - 31).toString() + " " + monthList[calendarData.month + 1] + " " + (calendarData.year + calendarData.yearLoop).toString());
                 date = (element.id - 31).toString() + " " + monthList[calendarData.month + 1] + " " + (calendarData.year + calendarData.yearLoop).toString();
             } else {
-                // setDate(element.id, element.id.toString() + " " + monthList[calendarData.month]);
-                // calendarData.setDate(element.id.toString() + " " + monthList[calendarData.month]);
                 date = element.id.toString() + " " + monthList[calendarData.month];
-                // setDate();
             }
             element.id = "secondDate";
             calendarData.removeSelect();
@@ -137,7 +127,6 @@ const CalendarDays = () => {
         for (let bindex = 1; bindex <= 7; bindex++) {
             days.push(
                 <div key={bindex + 1 - firstDay + 7 * index} id={`${bindex + 1 - firstDay + 7 * index}`} className={`${isSmallerThanToday(bindex + 1 - firstDay + 7 * index)}`} onClick={dataMonthClick.bind(this)}>
-                    {" "}
                     {bindex + 1 - firstDay + 7 * index}
                 </div>
             );
@@ -149,7 +138,7 @@ const CalendarDays = () => {
         );
     }
     //lastRow
-    if (endsOnSundayCheck) {
+    if (endsOnSundayCheck()) {
         const lastThhisMonthDates = [];
         for (let index = 1; index <= lastDay; index++) {
             lastThhisMonthDates.push(

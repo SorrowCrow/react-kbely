@@ -1,0 +1,228 @@
+.reservationForm {
+    padding-bottom: 3.75rem;
+    background-color: $backgroundgrey;
+    color: $deepblue;
+    .containerWave {
+        width: 100%;
+        min-width: 42.5rem;
+        height: 1.375rem;
+        opacity: 0;
+        fill: $backgroundgrey;
+        background: white;
+    }
+    .container {
+        max-width: 48.0625rem;
+        padding-left: 1.875rem;
+        padding-right: 1.875rem;
+        .form-grid {
+            grid-template-columns: auto;
+            grid-row-gap: 0.625rem;
+            p {
+                color: $secondary;
+                padding-left: 1.25rem;
+            }
+        }
+        .reservationForm__additional-info {
+            background-color: white;
+            border-radius: 1.875rem;
+            &-item {
+                padding-top: 2.75rem;
+                font-size: $font-20;
+            }
+        }
+        .reservationForm__additional {
+            padding-left: 0.9375rem;
+            padding-right: 0.9375rem;
+            padding-top: 1.75rem;
+            padding-bottom: 1.75rem;
+            transition: $transition-fast;
+            .wrap {
+                width: 100%;
+            }
+            &-item {
+                .strawberry,
+                .prossecco,
+                .tux {
+                    fill: $secondary;
+                    stroke: $secondary;
+                    width: 3.75rem;
+                    height: 3.75rem;
+                }
+                div {
+                    padding-left: 1.625rem;
+                }
+                span {
+                    font-size: $font-30;
+                    font-family: $playfair-font;
+                }
+                p {
+                    font-size: $font-18;
+                }
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 5.375rem;
+                    height: 2.875rem;
+                    margin-left: 5.375rem;
+                    input {
+                        opacity: 0;
+                        width: 0;
+                        height: 0;
+                        &:checked + .slider {
+                            background-color: $orange;
+                        }
+
+                        &:checked + .slider:before {
+                            transform: translateX(2.5rem);
+                        }
+                    }
+                }
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: $secondary;
+                    transition: $transition;
+                    border-radius: 2.125rem;
+                    &:before {
+                        position: absolute;
+                        content: "";
+                        height: 2.5rem;
+                        width: 2.5rem;
+                        left: 0.1875rem;
+                        bottom: 0.1875rem;
+                        background-color: white;
+                        transition: $transition;
+                        border-radius: 50%;
+                    }
+                }
+                .info {
+                    width: 2.875rem;
+                    height: 2.875rem;
+                    margin-left: 2.5rem;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    &__select-inner,
+    input,
+    &__select-list div,
+    textarea {
+        padding: 0;
+        padding-left: 1.25rem;
+        padding-right: 0.8438rem;
+        height: 3.75rem;
+        font-size: $font-20;
+        border-radius: 0.625rem;
+        font-family: $playfair-font;
+        background-color: $white;
+        border: 0;
+        color: $deepblue;
+        appearance: none;
+        &::placeholder {
+            color: $deepblue;
+            opacity: 1;
+        }
+    }
+    &__select {
+        max-height: 3.75rem;
+
+        svg {
+            width: 1.75rem;
+            height: 0.9375rem;
+            stroke: $secondary;
+        }
+        &-inner {
+            background-color: $white;
+            height: 3.75rem;
+        }
+        &-list {
+            grid-template-columns: 100%;
+            background-color: white;
+            border-radius: 0 0 0.625rem 0.625rem;
+            div {
+                border-radius: 0;
+
+                z-index: 1;
+                width: 100%;
+                height: 3.75rem;
+                p {
+                    padding-left: 1.25rem;
+                }
+                &:hover {
+                    background-color: $backgroundgrey;
+                }
+            }
+        }
+    }
+    textarea {
+        padding-top: 0.625rem;
+        margin-bottom: 1.875rem;
+        resize: none;
+        height: 8.4375rem;
+    }
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .reservationForm {
+        .containerWave {
+            opacity: 1;
+        }
+        padding-bottom: 5.5rem;
+        margin-top: 1.875rem;
+        .container {
+            padding-top: 6.25rem;
+            .form-grid {
+                grid-template-columns: auto auto;
+                grid-column-gap: 1.875rem;
+                grid-row-gap: 1.875rem;
+            }
+            .reservationForm__additional {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+                padding-top: 1.25rem;
+                padding-bottom: 1.25rem;
+                &-item {
+                    .tux {
+                        width: 4.375rem;
+                        height: 4.375rem;
+                    }
+                    div {
+                        padding: 0;
+                        display: flex;
+                    }
+                    span {
+                        font-size: $font-35;
+                        padding-left: 2.5rem;
+                        padding-right: 1.875rem;
+                    }
+                }
+            }
+        }
+        &__select-inner,
+        input,
+        &__select-list div,
+        textarea {
+            font-size: 1.5625rem;
+        }
+        textarea {
+            margin-bottom: 1.875rem;
+            grid-column: 1 / -1;
+            height: 10.625rem;
+        }
+    }
+}
+
+@media only screen and (min-width: $AdditionalComponent-breakpoint) {
+    .reservationForm .container .reservationForm__additional {
+        .wrap {
+            display: flex;
+        }
+    }
+}

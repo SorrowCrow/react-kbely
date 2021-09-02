@@ -28,6 +28,7 @@ const ACTIONS = {
     TOGGLE_PROSSECCO: "toggleProssecco",
     TOGGLE_MISA: "toggleMisa",
     TOGGLE_DROPDOWN: "toggleDropdown",
+    UNSET_TOKEN: "unsetToken",
 };
 
 const Reservation = () => {
@@ -78,7 +79,7 @@ const Reservation = () => {
     function exit(e) {
         e.stopPropagation();
 
-        setCalendarData({ type: calendarData.ACTIONS.SET_TIME, payload: { time: "" } });
+        setCalendarData({ type: calendarData.ACTIONS.SET_TIME, payload: { time: null } });
     }
 
     function dropdownFalse(e) {

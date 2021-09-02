@@ -1,0 +1,124 @@
+.header {
+    width: 100%;
+    margin-top: 1.875rem;
+
+    z-index: 2;
+    &__menu {
+        width: 3.75rem;
+        height: 3.75rem;
+        fill: $secondary;
+    }
+    &__wrap {
+        max-width: 90rem;
+        // margin-right: 2.1875rem;
+        padding-right: 1.875rem;
+        padding-left: 1.875rem;
+        color: $white;
+    }
+    &__logo {
+        fill: $secondary;
+        &-icon {
+            width: 2.5rem;
+            height: 3rem;
+        }
+        &-iconBig {
+            width: 3.75rem;
+            height: 4.25rem;
+        }
+        &-text {
+            font-size: $font-35;
+            margin-top: 0.4375rem;
+            margin-left: 1.25rem;
+        }
+    }
+    &__contacts {
+        width: 55.25rem;
+        margin-top: 1rem;
+        font-size: 1.5625rem;
+        a {
+            color: $white;
+        }
+        svg {
+            padding-top: 0.125rem;
+            padding-right: 0.3125rem;
+            width: 1.5625rem;
+            height: 1.5625rem;
+            fill: $secondary;
+        }
+    }
+}
+
+.headerMenu {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 150;
+    padding: 1.875rem;
+    background: $backgroundgrey;
+    color: $deepblue;
+    &__header {
+        &-icon {
+            width: 3.125rem;
+            height: 3.75rem;
+        }
+        &-time {
+            color: $secondary;
+            font-size: $font-18;
+        }
+        .ReservationExit {
+            background-color: $white;
+            border-radius: 50%;
+            width: 3.75rem;
+            height: 3.75rem;
+            transition: $transition-fast;
+            &:hover {
+                transform: rotate(90deg);
+                svg {
+                    fill: $orange;
+                }
+            }
+            svg {
+                width: 1.3125rem;
+                height: 1.3125rem;
+                fill: $secondary;
+            }
+        }
+    }
+    &__scrolls {
+        font-size: 1.875rem;
+        grid-row-gap: 1.25rem;
+        padding-top: 2.125rem;
+        padding-bottom: 5.0625rem;
+    }
+    a {
+        color: $deepblue;
+    }
+    &__number {
+        font-family: $playfair-font;
+        font-size: 2.8125rem;
+        letter-spacing: -0.03em;
+        padding-bottom: 2.5625rem;
+    }
+    &__links {
+        padding-top: 2.8125rem;
+        padding-bottom: 3.75rem;
+        a {
+            margin-left: 0.625rem;
+            margin-right: 0.625rem;
+        }
+        svg {
+            width: 3.125rem;
+            height: 3.125rem;
+            fill: $deepblue;
+        }
+    }
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .header {
+        &__logo {
+            margin-left: 2.8175rem;
+        }
+    }
+}

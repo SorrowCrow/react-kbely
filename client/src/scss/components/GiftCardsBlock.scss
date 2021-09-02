@@ -1,0 +1,129 @@
+.GiftCardsBlock {
+    padding-top: 4.25rem;
+    padding-right: 1.875rem;
+    padding-left: 1.875rem;
+    padding-bottom: 4.25rem;
+    .title {
+        font-family: $playfair-font;
+    }
+    .title,
+    .sub-title {
+        color: $primary;
+    }
+    .sub-title {
+        padding-top: 1.875rem;
+        padding-bottom: 2.875rem;
+        max-width: 41.875rem;
+    }
+    .dropletContainer {
+        grid-template-columns: auto auto;
+        grid-column-gap: 1.25rem;
+        grid-row-gap: 1.25rem;
+        .droplet {
+            width: 9.1875rem;
+            height: 11.25rem;
+            #buyNow {
+                width: 4.375rem;
+                height: 4.375rem;
+                top: -10.75rem;
+                left: 5rem;
+                opacity: 0;
+                transition: $transition;
+            }
+            &:hover {
+                #buyNow {
+                    opacity: 1;
+                }
+            }
+        }
+        .test {
+            #rect31 {
+                transition: $transition-slow;
+                transform: translateY(-4px);
+            }
+            &:hover {
+                #rect31 {
+                    transform: translate(-117px, -4px);
+                }
+            }
+        }
+        .test1 {
+            #rect31 {
+                transition: $transition-slow;
+                transform: translate(-30px, -13px);
+            }
+            &:hover {
+                #rect31 {
+                    transform: translate(-117px, -13px);
+                }
+            }
+        }
+        .test2 {
+            #rect31 {
+                transition: $transition-slow;
+                transform: translate(-30px, -24px);
+            }
+            &:hover {
+                #rect31 {
+                    transform: translate(-117px, -24px);
+                }
+            }
+        }
+        .test3 {
+            #rect31 {
+                transition: $transition-slow;
+                transform: translate(-30px, -43px);
+            }
+            &:hover {
+                #rect31 {
+                    transform: translate(-117px, -43px);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $sm-breakpoint) {
+    .GiftCardsBlock {
+        .dropletContainer {
+            grid-template-columns: auto auto auto auto;
+        }
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .GiftCardsBlock {
+        padding-top: 6.25rem;
+        padding-bottom: 8.4375rem;
+        padding-left: 8.4375rem;
+        padding-right: 8.4375rem;
+        max-width: 60.625rem;
+        justify-content: left;
+        .titleContainer {
+            width: fit-content;
+        }
+        .dropletContainer {
+            grid-template-columns: auto auto;
+            grid-column-gap: 1.25rem;
+            .droplet {
+                width: 16.875rem;
+                height: 20.5rem;
+                overflow: hidden;
+                #buyNow {
+                    width: 7.5rem;
+                    height: 7.5rem;
+                    top: -19.375rem;
+                    left: 10rem;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $droplet-breakpoint) {
+    .GiftCardsBlock {
+        .dropletContainer {
+            margin-left: -6.25rem;
+            grid-template-columns: auto auto auto auto;
+        }
+    }
+}

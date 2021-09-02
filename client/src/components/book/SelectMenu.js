@@ -36,7 +36,6 @@ const SelectMenu = ({ timeframeData }) => {
     function timeframeClick(e) {
         const element = e.target;
         if (element.classList.contains("timeframe")) {
-            console.log(element, element.childNodes);
             const bloat = element.childNodes[0].innerText.toString();
             calendarData.removeSelect(bloat);
         } else {

@@ -10,6 +10,7 @@ const HeaderMenu = ({ toggleMenuChange }) => {
     }, []);
 
     function scroll(id) {
+        toggleMenuChange();
         window.scrollTo({
             top: document.querySelector(id).offsetTop,
             behavior: "smooth",

@@ -92,4 +92,4 @@ const GiftCardsBlock = () => {
         </div>
     );
 };
-export { GiftCardsBlock };
+export default GiftCardsBlock;

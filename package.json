@@ -5,6 +5,7 @@
     "main": "server.js",
     "private": true,
     "scripts": {
+        "installDeps": "concurrently \"npm install\" \"npm install --prefix client\"",
         "server": "nodemon server.js --ignore 'client/'",
         "client": "npm start --prefix client",
         "dev": "HTTPS=true concurrently \"npm run server\" \"npm run client\"",

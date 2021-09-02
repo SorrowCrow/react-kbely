@@ -1,0 +1,82 @@
+@import "./components/Title";
+
+@import "./components/AboutBlock";
+
+@import "./components/BookBlock";
+
+@import "./components/GiftCardsBlock";
+
+@import "./components/ReferenceBlock";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: $default-font;
+    margin: 0;
+    cursor: default;
+}
+.unHiddenForSlide {
+    .block__slider img {
+        filter: blur(0);
+    }
+    .block__sliderButtons {
+        opacity: 1;
+        &-nextBtn,
+        &-prevBtn {
+            &:hover {
+                cursor: pointer;
+                width: 4.375rem;
+                height: 4.375rem;
+                svg {
+                    fill: $primary;
+                }
+            }
+        }
+    }
+}
+
+.ErrorMessage {
+    position: fixed;
+    top: 0;
+    align-content: center;
+    width: 100%;
+    .item {
+        max-width: 500px;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        border-color: red;
+        background-color: $secondary;
+    }
+}
+
+.LoadingBlock {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    @keyframes spinner {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .spin::before {
+        animation: 1.5s linear infinite spinner;
+        animation-play-state: inherit;
+        border: solid 5px #cfd0d1;
+        border-bottom-color: $primary;
+        border-radius: 50%;
+        content: "";
+        height: 40px;
+        width: 40px;
+        will-change: transform;
+    }
+}

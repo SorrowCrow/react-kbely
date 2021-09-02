@@ -1,0 +1,65 @@
+.pre-reserv {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    .Reservation {
+        width: 100%;
+        height: 100%;
+        &__reservationForm {
+            width: 100%;
+            padding: 3rem 0 0 0;
+            background: $backgroundgrey;
+            &-exit {
+                background-color: $white;
+                border-radius: 50%;
+                width: 3.75rem;
+                height: 3.75rem;
+                right: 1.875rem;
+                top: 1.875rem;
+                &:hover {
+                    svg {
+                        transform: rotate(90deg);
+                        fill: $orange;
+                    }
+                }
+                svg {
+                    transition: $transition-fast;
+                    width: 1.3188rem;
+                    height: 1.3188rem;
+                    fill: $secondary;
+                }
+            }
+            @import "./Reservation/ReservationHeaderBlock.scss";
+
+            @import "./Reservation/ReservationFormBlock.scss";
+
+            @import "./Reservation/SummaryBlock.scss";
+        }
+    }
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .pre-reserv .Reservation {
+        &__reservationForm {
+            max-width: 62.5rem;
+            margin-top: 6.25rem;
+            margin-bottom: 6.25rem;
+            background: $white;
+            border-radius: 1.875rem;
+            &-exit {
+                width: 6.25rem;
+                height: 6.25rem;
+                top: auto;
+                right: -1.875rem;
+                svg {
+                    width: 2.9125rem;
+                    height: 2.9125rem;
+                    fill: $deepblue;
+                }
+            }
+        }
+    }
+}

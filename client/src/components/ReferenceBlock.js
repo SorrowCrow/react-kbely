@@ -73,4 +73,4 @@ const ReferenceBlock = () => {
     );
 };
 
-export { ReferenceBlock };
+export default ReferenceBlock;

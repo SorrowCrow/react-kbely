@@ -6,7 +6,8 @@ import React, { useState } from "react";
 import { useResponsive } from "../DimensionsContext";
 
 const Title = () => {
-    // const responsive = useResponsive().is;
+    const [isMenu, setIsMenu] = useState(false);
+    const [isSlider, setIsSlider] = useState(false);
     const isMd = useResponsive().isMd;
     function toggleMenuChange() {
         setIsMenu(!isMenu);
@@ -27,52 +28,24 @@ const Title = () => {
         }
     }
 
-    let header, menu, slider, sliderInit;
-    const sliderInitContent = (
-        <>
-            <div className={`title-privatni relative fit-content ${isMd ? "mx-auto" : ""}`}>Tvůj privátní</div>
-            <div className="title-wellness relative mx-auto">Wellness</div>
-            <svg className={`relative ${!isMd ? "absolute" : ""}`}>
-                <use href="#rezervace" onClick={rezervaceClick} />
-            </svg>
-        </>
-    );
-    const [isMenu, setIsMenu] = useState(false);
-    const [isSlider, setIsSlider] = useState(false);
-
-    if (isMenu) {
-        header = <HeaderMenu toggleMenuChange={toggleMenuChange} />;
-    } else {
-        header = <Header toggleMenuChange={toggleMenuChange} />;
-    }
-
-    if (!isMd) {
-        menu = <Menu />;
-        slider = <Slider isSlider={isSlider} />;
-        sliderInit = (
-            <div id="sliderInit" className={`${!isMd ? "align-self-center h-p" : "title-wrap"} ${isSlider ? "hiddenTitle" : ""} relative title fit-content user-select-none relative`} onClick={titleClick}>
-                {sliderInitContent}
-            </div>
-        );
-    } else {
-        slider = <Slider isSlider={false} />;
-        sliderInit = (
-            <div id="sliderInit" className={`${"title-wrap"} relative title fit-content user-select-none relative`}>
-                {sliderInitContent}
-            </div>
-        );
-    }
-
     return (
         <>
-            <header className="header absolute">{header}</header>
+            <header className="header absolute">{isMenu ? <HeaderMenu toggleMenuChange={toggleMenuChange} /> : <Header toggleMenuChange={toggleMenuChange} />}</header>
             <div className="contain relative grid content-center title-contain" id="cover">
-                {slider}
-                <div className={`absolute flex content-center w-100 ${!isMd ? "align-self-center" : "title-wrap"}`}>{sliderInit}</div>
-                {menu}
+                {isMd ? <Slider isSlider={false} /> : <Slider isSlider={isSlider} />}
+                <div className={`absolute flex content-center w-100 ${!isMd ? "align-self-center" : "title-wrap"}`}>
+                    <div id="sliderInit" className={`${isMd ? "title-wrap" : "align-self-center h-p"} ${isSlider ? "hiddenTitle" : ""} relative title fit-content user-select-none relative`} onClick={titleClick}>
+                        <div className={`title-privatni relative fit-content ${isMd ? "mx-auto" : ""}`}>Tvůj privátní</div>
+                        <div className="title-wellness relative mx-auto">Wellness</div>
+                        <svg className={`relative ${!isMd ? "absolute" : ""}`}>
+                            <use href="#rezervace" onClick={rezervaceClick} />
+                        </svg>
+                    </div>
+                </div>
+                {!isMd && <Menu />}
             </div>
         </>
     );
 };
 
-export { Title };
+export default Title;

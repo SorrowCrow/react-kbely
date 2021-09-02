@@ -44,21 +44,11 @@ const SummaryBlock = ({ OnlinePayments, setOnlinePayments }) => {
     }
 
     useEffect(() => {
-        const captcha = document.createElement("script");
-        captcha.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
-        captcha.defer = true;
-        captcha.async = true;
-        document.head.appendChild(captcha);
-
         document.getElementsByClassName("SummaryBlock__payingMethods-item")[0].click();
     }, []);
 
     const handleToken = (token) => {
         setFormData({ type: formData.ACTIONS.SET_TOKEN, payload: { token: token } });
-    };
-
-    const handleExpire = () => {
-        setFormData({ type: formData.ACTIONS.UNSET_TOKEN });
     };
 
     return (
@@ -79,24 +69,24 @@ const SummaryBlock = ({ OnlinePayments, setOnlinePayments }) => {
                         <div>{formData.persons} osoby</div>
                         <div>{formData.persons * 100},– Kč</div>
                     </div>
-                    {formData.ozdoba ? (
+                    {formData.ozdoba && (
                         <div className="SummaryBlock__costs-item flex content-between">
                             <div>Ozdoba</div>
                             <div>{ozdobaPrice},– Kč</div>
                         </div>
-                    ) : null}
-                    {formData.prossecco ? (
+                    )}
+                    {formData.prossecco && (
                         <div className="SummaryBlock__costs-item flex content-between">
                             <div>Prossecco</div>
                             <div>{prosseccoPrice},– Kč</div>
                         </div>
-                    ) : null}
-                    {formData.misa ? (
+                    )}
+                    {formData.misa && (
                         <div className="SummaryBlock__costs-item flex content-between">
                             <div>Misa</div>
                             <div>{misaPrice},– Kč</div>
                         </div>
-                    ) : null}
+                    )}
                     <div className="SummaryBlock__costs-total SummaryBlock__costs-item flex content-between">
                         <div>Total:</div>
                         <div>{formData.persons * 100 + timePrice + (formData.ozdoba ? ozdobaPrice : 0) + (formData.prossecco ? prosseccoPrice : 0) + (formData.misa ? misaPrice : 0)},– Kč</div>
@@ -134,8 +124,8 @@ const SummaryBlock = ({ OnlinePayments, setOnlinePayments }) => {
                     <div id="stripe-card" required className={`overflow-hidden ${OnlinePayments ? "cardShow" : "cardHide"}`}>
                         <CardElement options={style} />
                     </div>
-                    <div class="min-content mx-auto captcha__wrap">
-                        <ReCAPTCHA sitekey="6Le428QbAAAAAJtzzkOgPTjuGq8xp2uvjN79yGEf" onChange={handleToken} onExpire={handleExpire} />
+                    <div className="min-content mx-auto captcha__wrap">
+                        <ReCAPTCHA sitekey="6Le428QbAAAAAJtzzkOgPTjuGq8xp2uvjN79yGEf" onChange={handleToken} />
                     </div>
                 </div>
                 <button type="submit" className="SummaryBlock__rezervovat h-p mx-auto align-center" form="form">

@@ -74,7 +74,7 @@ export function CalendarProvider({ children }) {
         currentMonth: new Date().getMonth(),
         year: new Date().getFullYear(),
         yearLoop: 0,
-        time: "",
+        time: null,
         date: "1",
         hours: Number,
 

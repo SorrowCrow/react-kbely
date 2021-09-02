@@ -61,4 +61,4 @@ const BookBlock = () => {
     );
 };
 
-export { BookBlock };
+export default BookBlock;

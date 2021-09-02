@@ -54,4 +54,4 @@ const AboutBlock = () => {
     );
 };
 
-export { AboutBlock };
+export default AboutBlock;
