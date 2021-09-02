@@ -1,4 +1,4 @@
-# react-kbely https://react-kbely.herokuapp.com/
+# react-kbely
 
 ## Project setup
 
