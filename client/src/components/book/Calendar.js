@@ -21,7 +21,7 @@ const Calendar = () => {
         setCalendarData({ type: calendarData.ACTIONS.DECREASE_MONTH });
     }
     return (
-        <div className="absolute">
+        <>
             <div className="cat h-fit-content overflow-hidden relative user-select-none">
                 <div className="cat__header">
                     <div className="month flex content-center align-center">
@@ -49,7 +49,7 @@ const Calendar = () => {
                 <ChooseHoursMenu />
             </div>
             {calendarData.time ? <Reservation /> : null}
-        </div>
+        </>
     );
 };
 export { Calendar };

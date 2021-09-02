@@ -9,7 +9,7 @@ const BookBlock = () => {
                 <use href="#containerWave" />
             </svg>
             <div className="BookBlock__wrapper">
-                <div className="mx-auto max-content content">
+                <div className="mx-auto content">
                     <div className="title mx-auto fit-content" id="book">
                         Zarezervujete svoji návštěvu
                     </div>
