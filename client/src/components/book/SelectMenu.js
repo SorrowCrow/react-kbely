@@ -47,7 +47,6 @@ const SelectMenu = ({ timeframeData }) => {
     function checktime(hoursStart, hoursEnd, id = 0) {
         const n = new Date().getHours();
         const dd = Number(String(new Date().getDate()).padStart(2, "0"));
-        console.log(hoursStart, n);
         if (hoursStart <= n && dd === calendarData.secondDate && (calendarData.month === calendarData.currentMonth || id !== 0) && calendarData.yearLoop !== 1) {
             if (timeframeData.halfBool && hoursStart % 3 === 0 && hoursStart >= n) {
                 let m = new Date().getMinutes();

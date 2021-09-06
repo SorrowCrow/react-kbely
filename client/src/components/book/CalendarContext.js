@@ -55,7 +55,7 @@ export function CalendarProvider({ children }) {
             case ACTIONS.SET_YEARLOOP:
                 return { ...calendarData, yearLoop: action.payload.yearLoop };
             case ACTIONS.SET_TIME:
-                if (action.payload.time !== "") return { ...calendarData, time: action.payload.time };
+                if (action.payload.time !== null) return { ...calendarData, time: action.payload.time };
                 document.getElementsByTagName("body")[0].style.overflow = "";
                 return { ...calendarData, time: action.payload.time };
             case ACTIONS.SET_INSERT_MENU:
