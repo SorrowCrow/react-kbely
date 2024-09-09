@@ -20,6 +20,7 @@
     "tiny-slider": "^2.9.3",
     "web-vitals": "^1.1.2"
   },
+  "homepage": "https://sorrowcrow.github.io/react-kbely/",
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider HTTPS=true react-scripts start",
     "build": "react-scripts build",
