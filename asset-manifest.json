@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.ad3056b8.css",
-    "main.js": "/static/js/main.aee9878c.js",
-    "static/media/background.webp": "/static/media/background.11265c19f823e5a1dfe7.webp",
-    "static/media/pic.webp": "/static/media/pic.29e13804b1607d876c90.webp",
-    "index.html": "/index.html",
-    "main.ad3056b8.css.map": "/static/css/main.ad3056b8.css.map",
-    "main.aee9878c.js.map": "/static/js/main.aee9878c.js.map"
+    "main.css": "/react-kbely/static/css/main.a0b78d72.css",
+    "main.js": "/react-kbely/static/js/main.bdc7601c.js",
+    "static/media/background.webp": "/react-kbely/static/media/background.11265c19f823e5a1dfe7.webp",
+    "static/media/pic.webp": "/react-kbely/static/media/pic.29e13804b1607d876c90.webp",
+    "index.html": "/react-kbely/index.html",
+    "main.a0b78d72.css.map": "/react-kbely/static/css/main.a0b78d72.css.map",
+    "main.bdc7601c.js.map": "/react-kbely/static/js/main.bdc7601c.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad3056b8.css",
-    "static/js/main.aee9878c.js"
+    "static/css/main.a0b78d72.css",
+    "static/js/main.bdc7601c.js"
   ]
 }
