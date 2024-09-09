@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-kbely/static/css/main.a0b78d72.css",
-    "main.js": "/react-kbely/static/js/main.d1ae5aa4.js",
+    "main.js": "/react-kbely/static/js/main.fcdc6048.js",
     "static/media/background.webp": "/react-kbely/static/media/background.11265c19f823e5a1dfe7.webp",
     "static/media/pic.webp": "/react-kbely/static/media/pic.29e13804b1607d876c90.webp",
     "index.html": "/react-kbely/index.html",
     "main.a0b78d72.css.map": "/react-kbely/static/css/main.a0b78d72.css.map",
-    "main.d1ae5aa4.js.map": "/react-kbely/static/js/main.d1ae5aa4.js.map"
+    "main.fcdc6048.js.map": "/react-kbely/static/js/main.fcdc6048.js.map"
   },
   "entrypoints": [
     "static/css/main.a0b78d72.css",
-    "static/js/main.d1ae5aa4.js"
+    "static/js/main.fcdc6048.js"
   ]
 }
