@@ -1,0 +1,334 @@
+.cat {
+    border-radius: 1.875rem;
+    width: 19.6875rem;
+    font-size: 0.5625rem;
+    z-index: 1;
+    .cat__header {
+        background: $darkdarkblue;
+        width: 100%;
+        .month {
+            width: 100%;
+            height: 2.875rem;
+            .leftArrow {
+                padding-top: 0;
+                transform: rotate(180deg);
+            }
+            svg {
+                width: 2.25rem;
+                height: 2.25rem;
+                stroke: $beige;
+            }
+            .month-name {
+                width: 11.25rem;
+                font-family: Playfair Display;
+                font-size: 1.4375rem;
+                line-height: 2.9375rem;
+                letter-spacing: -0.03rem;
+            }
+        }
+        .weekdays {
+            color: $beige;
+            height: 1.875rem;
+            div {
+                width: 4.1875rem;
+            }
+        }
+    }
+    .grid-hiderows {
+        grid-template-rows: var(--calendarGrid);
+    }
+    .calendarDays {
+        background: white;
+        .row {
+            grid-template-columns: repeat(7, 2.8125rem);
+            grid-auto-rows: 2.8125rem;
+            .days-dates,
+            .daysGone {
+                width: 2.8125rem;
+                height: 2.8125rem;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $deepblue;
+                border-color: $deepblue;
+                border-radius: 50%;
+                user-select: none;
+                font-size: 0.8125rem;
+                cursor: pointer;
+            }
+            .days-dates:hover {
+                border: 0.125rem solid;
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+            .daysGone {
+                color: rgba(0, 0, 0, 0.25);
+            }
+            .nextMonthDates {
+                border-radius: 0 0 0 0;
+                background-color: $medium-beige;
+                color: rgba(0, 0, 0, 0.25);
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                &:hover {
+                    margin: auto;
+                    cursor: pointer;
+                    border-radius: 0 0 0 0;
+                }
+            }
+            .dateOne {
+                border-radius: 1.875rem 0 0 0;
+                &:hover {
+                    border-radius: 1.875rem 0 0 0;
+                }
+            }
+            .dateOneTop {
+                border-radius: 0 0 1.875rem 0;
+                &:hover {
+                    border-radius: 0 0 1.875rem 0;
+                }
+            }
+            .firstDateCss {
+                border: 0.125rem solid $orange;
+                width: 2.25rem;
+                height: 2.25rem;
+                color: $orange;
+            }
+            .secondDateCss {
+                border: 0.125rem solid $orange;
+                width: 2.25rem;
+                height: 2.25rem;
+                background-color: $orange;
+                color: white;
+            }
+        }
+    }
+    .choose {
+        height: 0;
+
+        width: 100%;
+        background-color: $medium-beige;
+        border-radius: 1.875rem;
+        font-size: $font-15;
+        transition: $transition;
+        .hours {
+            margin: 1.5625rem;
+            background: $darkdarkblue;
+            border-radius: 1.5625rem;
+            span {
+                background: $darkdarkblue;
+                height: 3.125rem;
+                border-radius: 1.875rem;
+                color: white;
+                padding-left: 35px;
+                &:hover {
+                    background: rgba(255, 255, 255, 0.03);
+                }
+            }
+        }
+    }
+
+    .chooseUnhidden {
+        height: 15.625rem;
+        opacity: 1;
+    }
+    #openedRef{
+        transition: $transition all;
+    }
+    .opened {
+        height: 0;
+        background-color: $medium-beige;
+        border-radius: 1.875rem;
+        font-size: $font-15;
+        transition: $transition;
+        z-index: 1;
+        &__inner {
+            margin: 1.5625rem;
+            &-select {
+                background: $darkdarkblue;
+                width: 100%;
+                height: 3.125rem;
+                border-radius: 1.875rem;
+                color: white;
+                margin-bottom: 1.25rem;
+                &:hover {
+                    background: #2a2746;
+                }
+                .pa {
+                    padding-left: 2.1875rem;
+                }
+                svg {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    padding-right: 0.9375rem;
+                    stroke: $white;
+                }
+            }
+            &-timeframes {
+                .timeframe,
+                .timeframeReserved {
+                    padding-left: 2.1875rem;
+                    padding-right: 0.9375rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 2.375rem;
+                    color: $deepblue;
+                    padding-top: 0.6875rem;
+                    padding-bottom: 0.6875rem;
+                    border-radius: 1.875rem;
+                    &:hover {
+                        cursor: pointer;
+                        background: #eeebe8;
+                    }
+                    .rezervaceButton {
+                        background: $orange;
+                        color: white;
+                        border-radius: 3.125rem;
+                        width: 7.8125rem;
+                        height: 2.375rem;
+                        pointer-events: none;
+                    }
+                }
+                .timeframeReserved {
+                    color: rgba(0, 0, 0, 0.25);
+                    &:hover {
+                        cursor: initial;
+                        background: initial;
+                    }
+                    .rezervaceButton {
+                        background: rgba(0, 0, 0, 0.03);
+                        color: rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $sm-breakpoint) {
+    .cat {
+        position: absolute;
+    }
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .cat {
+        height: fit-content;
+        overflow: hidden;
+        user-select: none;
+        border-radius: 1.875rem;
+        width: 29.375rem;
+        font-size: $font-20;
+        .cat__header {
+            background: $darkdarkblue;
+            width: 100%;
+            height: 6.25rem;
+            .month {
+                width: 100%;
+                height: 4.375rem;
+                display: flex;
+                justify-content: center;
+                .leftArrow {
+                    padding-top: 0;
+                    padding-bottom: 0.5rem;
+                    transform: rotate(180deg);
+                }
+                svg {
+                    padding-top: 0.5rem;
+                    width: 3.375rem;
+                    height: 3.375rem;
+                    stroke: $beige;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                .month-name {
+                    width: 16.875rem;
+                    font-family: Playfair Display;
+                    font-size: $font-35;
+                    line-height: 2.9375rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    letter-spacing: -0.03rem;
+
+                    color: #f5f2ef;
+                }
+            }
+            .weekdays {
+                display: flex;
+                justify-content: space-between;
+                color: $beige;
+                div {
+                    width: 4.1875rem;
+                    height: 1.875rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+        }
+        .grid-hiderows {
+            grid-template-rows: var(--calendarGrid);
+        }
+        .calendarDays .row {
+            grid-template-columns: repeat(7, 4.1875rem);
+            grid-auto-rows: 4.1875rem;
+            .days-dates,
+            .daysGone {
+                width: 3.8125rem;
+                height: 3.8125rem;
+                font-size: $font-20;
+            }
+            .days-dates:hover {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            .nextMonthDates {
+                border-radius: 0 0 0 0;
+                background-color: $medium-beige;
+                color: rgba(0, 0, 0, 0.25);
+                margin: auto;
+                width: 100%;
+                height: 100%;
+            }
+            .dateOne {
+                border-radius: 1.875rem 0 0 0;
+                &:hover {
+                    border-radius: 1.875rem 0 0 0;
+                }
+            }
+            .dateOneTop {
+                border-radius: 0 0 1.875rem 0;
+                &:hover {
+                    border-radius: 0 0 1.875rem 0;
+                }
+            }
+            .firstDateCss {
+                border: 0.125rem solid $orange;
+                width: 3.25rem;
+                height: 3.25rem;
+                color: $orange;
+            }
+            .secondDateCss {
+                border: 0.125rem solid $orange;
+                width: 3.25rem;
+                height: 3.25rem;
+                background-color: $orange;
+                color: white;
+            }
+        }
+        .choose {
+            font-size: $font-20;
+        }
+
+        .opened {
+            font-size: $font-20;
+        }
+    }
+}

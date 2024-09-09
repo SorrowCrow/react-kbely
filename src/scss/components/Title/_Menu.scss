@@ -1,0 +1,18 @@
+.menu-wrap {
+    bottom: 4.0625rem;
+    .menu {
+        color: $white;
+        bottom: 4.0625rem;
+        width: 60.625rem;
+        font-size: 1.5625rem;
+        &__main {
+            width: 38.5625rem;
+        }
+        &__social {
+            width: 16.8125rem;
+        }
+        a {
+            color: $white;
+        }
+    }
+}
