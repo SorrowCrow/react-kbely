@@ -18,35 +18,17 @@ const ChooseHoursMenu: FC<HTMLAttributes<HTMLElement>> = () => {
 
   function setter(indexHour: number, halfBool: boolean, threeHoursBool: boolean) {
     setTimeframeData({ indexHour: indexHour, halfBool: halfBool, threeHoursBool: threeHoursBool });
-
-    // calendarData.insertSelect();
-    // calendarData.removeMenu();
   }
 
   useLayoutEffect(() => {
     setTimeframeData(undefined);
   }, [date, month]);
 
-  // function removeMenu() {
-  //   document.getElementById("chooseHoursMenu").classList.remove("chooseUnhidden");
-  // }
-
-  // function insertSelect() {
-  //   setTimeout(function () {
-  //     document.getElementById("openedRef").style.height = "auto";
-  //     let height = document.getElementById("openedRef").clientHeight + "px";
-  //     document.getElementById("openedRef").style.height = "";
-  //     window.requestAnimationFrame(function () {
-  //       setTimeout(function () {
-  //         document.getElementById("openedRef").style.height = height;
-  //       });
-  //     });
-  //   });
-  // }
-
   const onClick = () => {
     setTimeframeData(undefined);
   };
+
+  console.log(timeframeData);
 
   return (
     <div id="chooseHours">

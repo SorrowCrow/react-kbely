@@ -79,6 +79,7 @@ type DispatchType = Dispatch<
 const Reservation = () => {
   const { calendarData, setCalendarData } = useCalendarData();
   const [OnlinePayments, setOnlinePayments] = useState(true);
+  const [captchaHighlight, setCaptchaHighlight] = useState(false);
 
   const reducer: { (formData: FormData, action: OverloadAction): FormData } = (formData, action) => {
     switch (action.type) {
@@ -129,6 +130,12 @@ const Reservation = () => {
     setCalendarData({ type: "setTime", payload: { time: undefined } });
   }
 
+  function submit() {
+    navigate("/", { replace: true });
+    setCalendarData({ type: "unsetData" });
+    document.body.style.overflow = "";
+  }
+
   function dropdownFalse(e: MouseEvent<Element>) {
     e.stopPropagation();
 
@@ -138,7 +145,6 @@ const Reservation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // document.getElementById("reservation").scrollIntoView(true);
     navigate("/reservation", { replace: true });
     document.body.style.overflow = "hidden";
   }, []);
@@ -156,8 +162,8 @@ const Reservation = () => {
           <Elements stripe={stripePromise}>
             <FormDataContext.Provider value={{ formData, setFormData: setFormData as DispatchType }}>
               <ReservationHeaderBlock />
-              <ReservationFormBlock OnlinePayments={OnlinePayments} />
-              <SummaryBlock OnlinePayments={OnlinePayments} setOnlinePayments={setOnlinePayments} />
+              <ReservationFormBlock setCaptchaHighlight={setCaptchaHighlight} OnlinePayments={OnlinePayments} exit={submit} />
+              <SummaryBlock highlight={captchaHighlight} OnlinePayments={OnlinePayments} setOnlinePayments={setOnlinePayments} />
             </FormDataContext.Provider>
           </Elements>
         </div>

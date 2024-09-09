@@ -16,6 +16,8 @@ const CalendarDays = () => {
 
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
 
+  const { month } = calendarData;
+
   useEffect(() => {
     if (new Date(new Date().getFullYear(), calendarData.month, 1).getDay() === 0) {
       setFirstDay(7);
@@ -31,7 +33,8 @@ const CalendarDays = () => {
     setThisMonthDays(new Date(new Date().getFullYear(), calendarData.month + 1, 0).getDate());
 
     setSelectedId(undefined);
-  }, [calendarData.month]);
+  }, [month]);
+  console.log({ selectedId, calendarData });
 
   function isToday(day: number) {
     return day === dd;
@@ -74,8 +77,6 @@ const CalendarDays = () => {
   async function dataMonthClick(id: string, classList?: string) {
     if (id === selectedId) {
       setSelectedId(undefined);
-      // calendarData.removeMenu();
-      // calendarData.removeSelect();
       setCalendarData({ type: "unsetData" });
     } else if (classList && id && !classList.includes("daysGone")) {
       setSelectedId(id);
@@ -88,8 +89,6 @@ const CalendarDays = () => {
       } else {
         date = id + " " + monthList[calendarData.month];
       }
-      // calendarData.removeSelect();
-      // calendarData.insertMenu(element.parentElement.parentElement.classList[0], date);
       const response = await axios.get(process.env.REACT_APP_API + "reservationItems/" + date);
       const reservedArray = [];
       for (let i = 0; i < Object.keys(response.data).length; i++) {
@@ -97,35 +96,6 @@ const CalendarDays = () => {
         reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
       }
       setCalendarData({ type: "setInsertMenu", payload: { reservedArray: reservedArray as any, date: date } });
-      //   setTimeout(function () {
-      //     window.requestAnimationFrame(function () {
-      //       document.getElementsByClassName("choose")[0].classList.add("chooseUnhidden");
-      //     });
-      //   });
-
-      //   // if (row) {
-      //   //   insertAfter(document.getElementById("chooseHours"), document.getElementsByClassName(row)[0]);
-      //   // }
-
-      // async function insertMenu(row, date, secondDate) {
-      //   setCalendarData({ type: ACTIONS.SET_RESERVED_ARRAY, payload: { reservedArray: [] } });
-      //   const response = await axios.get(process.env.REACT_APP_API + "reservationItems/" + date);
-      //   let reservedArray = [];
-      //   for (let i = 0; i < Object.keys(response.data).length; i++) {
-      //     let time = response.data[i].time;
-      //     reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
-      //   }
-      //   setCalendarData({ type: ACTIONS.SET_INSERT_MENU, payload: { reservedArray: reservedArray, secondDate: Number(secondDate), date: date } });
-      //   setTimeout(function () {
-      //     window.requestAnimationFrame(function () {
-      //       document.getElementsByClassName("choose")[0].classList.add("chooseUnhidden");
-      //     });
-      //   });
-
-      //   // if (row) {
-      //   //   insertAfter(document.getElementById("chooseHours"), document.getElementsByClassName(row)[0]);
-      //   // }
-      // }
     }
   }
 

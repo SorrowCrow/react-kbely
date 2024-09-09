@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { ChangeEvent, FC, FormEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, Dispatch, FC, FormEvent, MouseEvent, useEffect, useState } from "react";
 import ContainerWave from "../Icons/ContainerWave";
 import OpenedArrow from "../Icons/OpenedArrow";
 import { useFormDataContext } from "../Reservation";
@@ -8,7 +8,7 @@ import { AdditionalComponent } from "./components/AdditionalComponent";
 import { SelectComponent } from "./components/SelectComponent";
 import { StripeCardElement } from "@stripe/stripe-js";
 
-const ReservationFormBlock: FC<{ OnlinePayments: boolean }> = ({ OnlinePayments }) => {
+const ReservationFormBlock: FC<{ OnlinePayments: boolean; exit: () => void; setCaptchaHighlight: Dispatch<React.SetStateAction<boolean>> }> = ({ OnlinePayments, exit, setCaptchaHighlight }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -57,10 +57,11 @@ const ReservationFormBlock: FC<{ OnlinePayments: boolean }> = ({ OnlinePayments 
     if (inputData.loading || !stripe || !elements) return;
 
     if (!formData.token) {
-      document.getElementsByClassName("captcha__wrap")[0].classList.add("highlight");
+      // document.getElementsByClassName("captcha__wrap")[0].classList.add("highlight");
+      setCaptchaHighlight(true);
       return;
     }
-    document.getElementsByClassName("captcha__wrap")[0].classList.remove("highlight");
+    setCaptchaHighlight(false);
 
     setInputData((inputData) => {
       return { ...inputData, loading: true };
@@ -121,7 +122,7 @@ const ReservationFormBlock: FC<{ OnlinePayments: boolean }> = ({ OnlinePayments 
       console.log(message);
     }
     setInputData((i) => ({ ...i, loading: false }));
-    document.getElementById("reservationExit")?.click();
+    exit();
     return;
   }
 

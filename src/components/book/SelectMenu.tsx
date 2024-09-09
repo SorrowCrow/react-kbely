@@ -41,14 +41,16 @@ function evenNumbers(timeframeData: TimeframeData) {
 
 function checktime({ hoursStart, hoursEnd, id = 0, timeframeData, calendarData }: { hoursStart: number; hoursEnd?: number; id?: number; timeframeData: TimeframeData; calendarData: CalendarData }) {
   const n = new Date().getHours();
-  // const dd = Number(String(new Date().getDate()).padStart(2, "0"));
+  const dd = String(new Date().getDate()).padStart(2, "0");
+  const currentDate = calendarData.date?.slice(0, 2).trim().padStart(2, "0");
+
   const reservedArray = calendarData.reservedArray;
 
   if (!reservedArray) {
     return false;
   }
 
-  if (hoursStart <= n && (calendarData.month === calendarData.currentMonth || id !== 0) && calendarData.yearLoop !== 1) {
+  if (hoursStart <= n && dd === currentDate && (calendarData.month === calendarData.currentMonth || id !== 0) && calendarData.yearLoop !== 1) {
     if (timeframeData.halfBool && hoursStart % 3 === 0 && hoursStart >= n) {
       const m = new Date().getMinutes();
       if (m < 30) return true;
@@ -56,16 +58,12 @@ function checktime({ hoursStart, hoursEnd, id = 0, timeframeData, calendarData }
     return false;
   }
 
-  if (!hoursEnd) {
-    return false;
-  }
-
   for (let i = 0; i < reservedArray.length; i++) {
     if (hoursStart === Number(reservedArray[i][0])) return false;
-    else if (hoursStart > Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2])) return false;
-    //   else if (hoursStart > Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2])) return false;
-    else if (hoursStart < Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2]) && hoursEnd > Number(reservedArray[i][0])) return false;
-    else if (hoursStart < Number(reservedArray[i][2]) && hoursEnd > Number(reservedArray[i][2])) return false;
+    else if (hoursEnd && hoursStart > Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2])) return false;
+    // else if (hoursEnd&&hoursStart > Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2])) return false;
+    else if (hoursEnd && hoursStart < Number(reservedArray[i][0]) && hoursEnd <= Number(reservedArray[i][2]) && hoursEnd > Number(reservedArray[i][0])) return false;
+    else if (hoursEnd && hoursStart < Number(reservedArray[i][2]) && hoursEnd > Number(reservedArray[i][2])) return false;
     else if (reservedArray[i][3] === "30" && hoursStart === Number(reservedArray[i][2]) && !timeframeData.halfBool) return false;
   }
   return true;

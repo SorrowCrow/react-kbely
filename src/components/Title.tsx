@@ -20,7 +20,6 @@ const Title = () => {
       setIsSlider(!isSlider);
     }
   }
-  console.log({ isMenu });
 
   return (
     <Fragment>

@@ -8,7 +8,6 @@ import HeaderMenu from "../Icons/HeaderMenu";
 
 const Header: FC<{ toggleMenuChange: () => void }> = ({ toggleMenuChange }) => {
   const displayMenu = useResponsive().displayMenu;
-  console.log(displayMenu);
 
   return (
     <div className="header__wrap flex content-between mx-auto align-center">

@@ -1,5 +1,5 @@
 import { CardElement } from "@stripe/react-stripe-js";
-import { Dispatch, FC } from "react";
+import { Dispatch, FC, useEffect, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import ContainerWave from "../Icons/ContainerWave";
 import { useFormDataContext } from "../Reservation";
@@ -31,7 +31,7 @@ const style = {
   },
 };
 
-const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<React.SetStateAction<boolean>> }> = ({ OnlinePayments, setOnlinePayments }) => {
+const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<React.SetStateAction<boolean>>; highlight: boolean }> = ({ OnlinePayments, setOnlinePayments, highlight }) => {
   const { formData, setFormData } = useFormDataContext();
 
   let timePrice = 799;
@@ -43,9 +43,13 @@ const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<Re
     timePrice = 1899;
   }
 
-  // useEffect(() => {
-  //   document.getElementsByClassName("SummaryBlock__payingMethods-item")[0]?.click();
-  // }, []);
+  const ref = useRef<HTMLLabelElement>(null);
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+    ref.current.click();
+  }, []);
 
   const handleToken = (token: string | null) => {
     setFormData({ type: "setToken", payload: { token } });
@@ -95,14 +99,14 @@ const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<Re
           <div className="SummaryBlock__voucher-button h-p align-center flex content-space-around">Uplatnit</div>
         </div>
         <div className="SummaryBlock__payingMethods">
-          <label className="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
+          {/* <label  className="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
             <div className="SummaryBlock__payingMethods-method">
               Bankovní převod
               <input type="radio" name="radio" form="form" onChange={() => setOnlinePayments(true)} />
               <span className="checkmark"></span>
             </div>
             <div className="SummaryBlock__payingMethods-item-info">Prevodem obvykle 2 dni</div>
-          </label>
+          </label> */}
           <label className="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
             <div className="SummaryBlock__payingMethods-method">
               Hotové
@@ -111,7 +115,7 @@ const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<Re
             </div>
             <div className="SummaryBlock__payingMethods-item-info">Hotove nebo kartou pri prichodu</div>
           </label>
-          <label className="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
+          <label ref={ref} className="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
             <div className="SummaryBlock__payingMethods-item-method">
               Platba Online
               <input type="radio" name="radio" form="form" onChange={() => setOnlinePayments(true)} />
@@ -122,7 +126,7 @@ const SummaryBlock: FC<{ OnlinePayments: boolean; setOnlinePayments: Dispatch<Re
           <div id="stripe-card" className={`overflow-hidden ${OnlinePayments ? "cardShow" : "cardHide"}`}>
             <CardElement options={style} />
           </div>
-          <div className="min-content mx-auto captcha__wrap">
+          <div className={`min-content mx-auto captcha__wrap ${highlight ? "highlight" : ""}`}>
             <ReCAPTCHA sitekey="6LdyMnwnAAAAAPPNzvZYWWfsjr2vvVi_p_0MqUPx" onChange={handleToken} />
           </div>
         </div>

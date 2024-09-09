@@ -105,10 +105,6 @@ const reducer: { (calendarData: CalendarData, action: OverloadAction): CalendarD
 };
 
 export const CalendarProvider: FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
-  // function insertAfter(newNode, existingNode) {
-  //   existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-  // }
-
   const [calendarData, setCalendarData] = useReducer(reducer, {
     month: new Date().getMonth(),
     currentMonth: new Date().getMonth(),
@@ -118,39 +114,7 @@ export const CalendarProvider: FC<HTMLAttributes<HTMLElement>> = ({ children }) 
     date: undefined,
     hours: undefined,
     reservedArray: undefined,
-
-    // insertSelect: insertSelect,
-    // insertMenu: insertMenu,
-    // removeMenu: removeMenu,
-    // removeSelect: removeSelect,
   });
-
-  // async function insertMenu(row, date, secondDate) {
-  //   setCalendarData({ type: ACTIONS.SET_RESERVED_ARRAY, payload: { reservedArray: [] } });
-  //   const response = await axios.get(process.env.REACT_APP_API + "reservationItems/" + date);
-  //   let reservedArray = [];
-  //   for (let i = 0; i < Object.keys(response.data).length; i++) {
-  //     let time = response.data[i].time;
-  //     reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
-  //   }
-  //   setCalendarData({ type: ACTIONS.SET_INSERT_MENU, payload: { reservedArray: reservedArray, secondDate: Number(secondDate), date: date } });
-  //   setTimeout(function () {
-  //     window.requestAnimationFrame(function () {
-  //       document.getElementsByClassName("choose")[0].classList.add("chooseUnhidden");
-  //     });
-  //   });
-
-  //   // if (row) {
-  //   //   insertAfter(document.getElementById("chooseHours"), document.getElementsByClassName(row)[0]);
-  //   // }
-  // }
-
-  // function removeSelect(bloat) {
-  //   document.getElementById("openedRef").style.height = "";
-  //   if (bloat) {
-  //     setCalendarData({ type: ACTIONS.SET_TIME, payload: { time: bloat } });
-  //   }
-  // }
 
   return (
     <CalendarContext.Provider
